@@ -10,8 +10,8 @@ O objetivo é manter uma base de conhecimento sólida, direta ao ponto e de cons
 
 Clica nos links abaixo para acederes aos glossários detalhados de cada ferramenta:
 
-* Glossário Completo do Nmap (Nmap-Glossary.md) — Metodologias de varrimento, flags técnicas e técnicas de evasão de firewall.
-* *Metasploit Framework (Brevemente)* — Comandos essenciais, gestão de payloads e módulos de exploração.
+* *Glossário Completo do Nmap (Nmap-Glossary.md)* — Metodologias de varrimento, flags técnicas e técnicas de evasão de firewall.
+* *Metasploit Framework (Metasploit-Glossary.md)* — Comandos essenciais, gestão de payloads e módulos de exploração.
 * *OWASP Top 10 (Brevemente)* — Notas sobre vulnerabilidades web e métodos de remediação.
 
 ---
