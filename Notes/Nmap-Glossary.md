@@ -8,20 +8,23 @@ Este documento serve como uma referência técnica detalhada de todas as flags e
 
 Esta secção cobre a forma como o Nmap comunica com as portas do sistema alvo ao nível dos protocolos de rede.
 
-###  TCP SYN Scan (Varrimento Síncrono / Furtivo)
+### TCP SYN Scan (Varrimento Síncrono / Furtivo)
 * **Flag:** `-sS`
 * **O que faz:** É o scan padrão do Nmap. Envia um pacote com a flag SYN (pedido de ligação). Se a porta estiver aberta, o alvo responde com SYN/ACK. O Nmap responde imediatamente com um pacote RST (reset) para derrubar a ligação antes que ela se conclua. 
 * **Vantagem:** É muito rápido e não conclui o "Three-Way Handshake" do TCP, o que faz com que não seja registado nos logs de serviços/aplicações do alvo.
+* **Quando é utilizado:** É o comando que vais usar quase sempre para começar. Se tens permissões de Administrador/Root na tua máquina e queres ver o que está aberto na rede sem fazer muito barulho nem perder tempo, este é o scan ideal.
 
-###  TCP Connect Scan (Varrimento de Ligação Completa)
+### TCP Connect Scan (Varrimento de Ligação Completa)
 * **Flag:** `-sT`
 * **O que faz:** Conclui a ligação TCP de 3 vias por completo (SYN -> SYN/ACK -> ACK) e fecha a ligação de seguida.
 * **Vantagem:** É o método utilizado obrigatoriamente quando o utilizador que corre o Nmap não tem privilégios de Administrador (Root) na máquina atacante, ou quando a rede não suporta pacotes raw. É muito ruidoso nos logs do alvo.
+* **Quando é utilizado:** Usas isto em dois cenários: ou estás agarrado a um utilizador normal sem permissões de Root na máquina que estás a usar, ou estás a tentar fazer o scan através de um túnel/proxy (onde o SYN scan normal não consegue passar). Também serve se a empresa te pedir especificamente para deixar logs guardados para auditoria.
 
-###  UDP Scan (Varrimento de Protocolo UDP)
+### UDP Scan (Varrimento de Protocolo UDP)
 * **Flag:** `-sU`
 * **O que faz:** Envia pacotes UDP para as portas do alvo. Se não houver resposta, o Nmap assume que a porta está aberta ou filtrada. Se receber uma mensagem ICMP de "Port Unreachable", a porta está fechada.
 * **Vantagem:** Permite descobrir serviços críticos que não usam TCP, como DNS (porta 53), SNMP (porta 161) ou DHCP. É um scan extremamente lento porque depende de timeouts.
+* **Quando é utilizado:** Só usas isto depois de já teres visto o tráfego TCP. Como é um scan que demora uma eternidade, só o corres quando tens mesmo de procurar serviços específicos que usam UDP (como servidores DNS ou serviços de rede antigos) e, normalmente, filtras apenas para ver as portas mais importantes.
 
 ---
 
@@ -29,25 +32,30 @@ Esta secção cobre a forma como o Nmap comunica com as portas do sistema alvo a
 
 Estes scans manipulam as regras do protocolo TCP para tentar contornar firewalls e Sistemas de Deteção de Intrusão (IDS) que bloqueiam os scans tradicionais.
 
-###  Null Scan (Varrimento Nulo)
+### Null Scan (Varrimento Nulo)
 * **Flag:** `-sN`
 * **O que faz:** Envia um pacote TCP completamente limpo, ou seja, com todas as flags (SYN, ACK, FIN, etc.) desativadas (a zero).
 * **Vantagem:** Segundo as regras do protocolo TCP (RFC 793), se a porta estiver fechada, o sistema deve responder com um RST. Se estiver aberta, o pacote é ignorado. Ajuda a passar por firewalls simples que só monitorizam ligações iniciadas por pacotes SYN.
+* **Quando é utilizado:** Atiras este comando quando estás a bater de frente com uma firewall antiga ou mal configurada que bloqueia tudo o que é pacote SYN. Só funciona bem contra sistemas Linux/Unix.
 
-###  FIN Scan (Varrimento de Finalização)
+### FIN Scan (Varrimento de Finalização)
 * **Flag:** `-sF`
 * **O que faz:** Envia um pacote com a flag FIN ativada (usada normalmente para encerrar uma ligação legítima).
 * **Vantagem:** Funciona da mesma forma que o Null Scan: portas fechadas respondem com RST e portas abertas ignoram. Útil quando a firewall bloqueia pacotes SYN e Null.
+* **Quando é utilizado:** É o teu plano B se o Null Scan falhar. Se a firewall do alvo descarta pacotes totalmente vazios, tentas este para ver se ela deixa passar pacotes que fingem estar apenas a fechar uma conversa antiga.
 
-###  Xmas Scan (Varrimento Árvore de Natal)
+### Xmas Scan (Varrimento Árvore de Natal)
 * **Flag:** `-sX`
 * **O que faz:** Envia um pacote TCP com as flags FIN, PSH (Push) e URG (Urgent) ativas em simultâneo. O nome vem do facto de o pacote parecer "iluminado como uma árvore de Natal" no analisador de tráfego.
 * **Vantagem:** Tenta explorar o comportamento de sistemas baseados em Unix/Linux para contornar regras rígidas de firewalls comerciais.
+* **Quando é utilizado:** Usas isto para tentar baralhar os sistemas de monitorização (IDS) da empresa. Como este pacote tem uma combinação de flags que não faz sentido nenhum no mundo real, alguns sistemas de defesa antigos não sabem o que fazer com ele e acabam por deixar passar o scan.
 
-###  ACK Scan (Mapeamento de Firewall)
+### ACK Scan (Mapeamento de Firewall)
 * **Flag:** `-sA`
 * **O que faz:** Envia pacotes com a flag ACK activa. Ao contrário dos outros, este scan nunca diz se uma porta está aberta ou fechada.
 * **Vantagem:** Serve puramente para analisar a firewall do alvo. Se a resposta for um RST, significa que a porta não está a ser filtrada pela firewall. Se o pacote for bloqueado ou ignorado, a porta está "Filtrada".
+* **Quando é utilizado:** Não usas isto para procurar portas abertas. Usas isto como se fosses um detetive a tentar perceber como é que a firewall do cliente está configurada. Serve para ver que portas estão totalmente trancadas pelas regras de defesa e quais estão abertas ao público.
+
 
 ---
 
