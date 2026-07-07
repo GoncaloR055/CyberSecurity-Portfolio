@@ -6,7 +6,7 @@ Bem-vindo ao meu repositório de estudos e práticas em Cibersegurança. Aqui do
 
 ## 🚀 O meu Progresso (TryHackMe)
 <!-- Substitui o link abaixo pelo link do teu badge que encontras no perfil da THM -->
-![TryHackMe Badge](https://tryhackme.com/GoncaloRodrigues055/badges/owasp-10?utm_campaign=social_share&utm_medium=social&utm_content=badge&utm_source=copy&sharerId=69c4a13dc0c82d090858ee51)
+![TryHackMe Badge](https://elan.is)
 
 ## 📂 Estrutura do Repositório
 
