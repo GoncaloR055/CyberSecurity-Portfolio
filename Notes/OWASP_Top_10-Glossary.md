@@ -21,7 +21,7 @@ Este repositório serve como um guia rápido, conciso e prático para as 10 prin
 ### 1. Broken Access Control
 * **O que é:** O sistema falha em validar se o utilizador autenticado tem permissão real para ver um dado recurso ou executar uma ação.
 * **Como Testar:**
-  * Altere IDs numéricos ou lógicos em URLs ou parâmetros (ex: mudar `://site.com` para `id=11`).
+  * Altere IDs numéricos ou lógicos em URLs ou parâmetros (ex: mudar `://site.com/api/user?id=10` para `id=11`).
   * Tente aceder a caminhos administrativos sem privilégios (ex: `/admin`, `/panel`).
   * Force a alteração de métodos HTTP (ex: mudar pedido `GET` para `POST` ou `DELETE`).
 * **Como Prevenir:**
