@@ -8,6 +8,10 @@ Bem-vindo ao meu repositório de estudos e práticas em Cibersegurança. Aqui do
 <!-- Substitui o link abaixo pelo link do teu badge que encontras no perfil da THM -->
 [![TryHackMe](https://shields.io)](https://tryhackme.com)
 
+### 🏅 Badges Conquistados (TryHackMe)
+
+<img src="images/linux.png" width="120" alt="Linux Badge" /> <img src="images/owasptop10.png" width="120" alt="OWASP Top 10 Badge" />
+
 
 ## 📂 Estrutura do Repositório
 
