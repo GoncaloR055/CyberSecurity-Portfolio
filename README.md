@@ -6,7 +6,8 @@ Bem-vindo ao meu repositório de estudos e práticas em Cibersegurança. Aqui do
 
 ## 🚀 O meu Progresso (TryHackMe)
 <!-- Substitui o link abaixo pelo link do teu badge que encontras no perfil da THM -->
-![TryHackMe Badge](https://elan.is)
+[![TryHackMe](https://shields.io)](https://tryhackme.com)
+
 
 ## 📂 Estrutura do Repositório
 
