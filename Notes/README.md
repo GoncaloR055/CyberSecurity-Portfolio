@@ -12,8 +12,8 @@ Clica nos links abaixo para acederes aos glossários detalhados de cada ferramen
 
 * [Glossário Completo do Nmap](Nmap-Glossary.md) — Metodologias de varrimento, flags técnicas e técnicas de evasão de firewall.
 * [Glossário do Metasploit Framework](Metasploit-Glossary.md) — Comandos essenciais, gestão de payloads e módulos de exploração.
-* [Glossário de Vulnerabilidades Web](OWASP-Burp-Glossary.md) — Notas sobre vulnerabilidades web e ferramentas de interceção (Burp Suite).
-* [Guia Prático de SQL Injection](SQLI-Glossary.md) — Mecânicas de ataque, payloads práticos e métodos de remediação.
+* [Glossário de Vulnerabilidades Web](OWASP_Top_10-Glossary.md) — Notas sobre vulnerabilidades web e ferramentas de interceção (Burp Suite).
+* [Guia Prático de SQL Injection](SQL_Injection-Glossary.md) — Mecânicas de ataque, payloads práticos e métodos de remediação.
 
 ---
 
